@@ -16,7 +16,7 @@ git init
 git config --global user.email "aa34913@126.com"
 git config --global user.name "ChenYCL"
 git add -A
-git commit -m 'deploy'
+git commit -m 'deploy [ci skip]'
 
 # if you are deploying to https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
