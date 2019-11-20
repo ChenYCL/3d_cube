@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>3d_cube</title>
+    <style>
+      body {
+        background: lightblue;
+      }
+      
+      .scene {
+        width: 300px;
+        height: 300px;
+        margin: 75px auto 0;
+      }
+
+      .cube {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        transform: perspective(1200px) translateZ(-500px);
+        -webkit-transform: perspective(1200px) translateZ(-500px);
+        -ms-transform: perspective(1200px) translateZ(-500px);
+        backface-visibility: hidden;
+      }
+
+      .side {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        box-sizing: border-box;
+        background-color: #999;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        padding: 120px 0;
+        font: 50px/1 "Trebuchet MS", sans-serif;
+        color: #fff;
+        text-transform: uppercase;
+        text-align: center;
+        transform-origin: 50% 50% -150px;
+        -ms-transform-origin: 50% 50% -150px;
+        -webkit-transform-origin: 50% 50% -150px;
+        backface-visibility: hidden;
+      }
+
+      .side::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.15);
+      }
+
+      .side span {
+        position: relative;
+      }
+
+      .guides {
+        position: absolute;
+        top: 0;
+        left: 50px;
+        width: 200px;
+        height: 100%;
+        border-style: dotted;
+        border-width: 0 1px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .guides::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 0;
+        height: 100%;
+        border-left: 1px dotted;
+      }
+
+      .left {
+        transform: perspective(1200px) rotateX(-90deg);
+        -ms-transform: perspective(1200px) rotateX(-90deg);
+        -webkit-transform: perspective(1200px) rotateX(-90deg);
+        animation: left 15s infinite linear;
+      }
+
+      .right {
+        transform: perspective(1200px) rotateX(-90deg);
+        -ms-transform: perspective(1200px) rotateX(-90deg);
+        -webkit-transform: perspective(1200px) rotateX(-90deg);
+        animation: right 15s infinite linear;
+      }
+
+      .back {
+        transform: perspective(1200px) rotateX(0deg) rotateY(180deg);
+        -ms-transform: perspective(1200px) rotateX(0deg) rotateY(180deg);
+        -webkit-transform: perspective(1200px) rotateX(0deg) rotateY(180deg);
+        animation: back 15s infinite linear;
+      }
+
+      .top {
+        transform: perspective(1200px) rotateX(90deg);
+        -ms-transform: perspective(1200px) rotateX(90deg);
+        -webkit-transform: perspective(1200px) rotateX(90deg);
+        animation: top 15s infinite linear;
+      }
+
+      .bottom {
+        transform: perspective(1200px) rotateX(-90deg);
+        -ms-transform: perspective(1200px) rotateX(-90deg);
+        -webkit-transform: perspective(1200px) rotateX(-90deg);
+        animation: bottom 15s infinite linear;
+      }
+
+      .front {
+        transform: perspective(1200px) rotateX(0deg);
+        -ms-transform: perspective(1200px) rotateX(0deg);
+        -webkit-transform: perspective(1200px) rotateX(0deg);
+        animation: front 15s infinite linear;
+      }
+
+      .left {
+        background-color: yellow;
+      }
+
+      .right {
+        background-color: #fff;
+      }
+
+      .back {
+        background-color: #49ff9c;
+      }
+
+      .top {
+        background-color: #fbffa4;
+      }
+
+      .bottom {
+        background-color: #4ffff7;
+      }
+
+      .front {
+        background-color: #d964ff;
+      }
+
+      @keyframes top {
+        from {
+          transform: perspective(1200px) rotateY(90deg);
+          -ms-transform: perspective(1200px) rotateY(90deg);
+          -webkit-transform: perspective(1200px) rotateY(90deg);
+        }
+        to {
+          transform: perspective(1200px) rotateY(450deg);
+          -ms-transform: perspective(1200px) rotateY(450deg);
+          -webkit-transform: perspective(1200px) rotateY(450deg);
+        }
+      }
+
+      @keyframes bottom {
+        from {
+          transform: perspective(1200px) rotateY(180deg);
+          -ms-transform: perspective(1200px) rotateY(180deg);
+          -webkit-transform: perspective(1200px) rotateY(180deg);
+        }
+        to {
+          transform: perspective(1200px) rotateY(540deg);
+          -ms-transform: perspective(1200px) rotateY(540deg);
+          -webkit-transform: perspective(1200px) rotateY(540deg);
+        }
+      }
+
+      @keyframes front {
+        from {
+          transform: perspective(1200px) rotateY(270deg);
+          -ms-transform: perspective(1200px) rotateY(270deg);
+          -webkit-transform: perspective(1200px) rotateY(270deg);
+        }
+        to {
+          transform: perspective(1200px) rotateY(630deg);
+          -ms-transform: perspective(1200px) rotateY(630deg);
+          -webkit-transform: perspective(1200px) rotateY(630deg);
+        }
+      }
+
+      @keyframes back {
+        from {
+          transform: perspective(1200px) rotateY(360deg);
+          -ms-transform: perspective(1200px) rotateY(360deg);
+          -webkit-transform: perspective(1200px) rotateY(360deg);
+        }
+        to {
+          transform: perspective(1200px) rotateY(720deg);
+          -ms-transform: perspective(1200px) rotateY(720deg);
+          -webkit-transform: perspective(1200px) rotateY(720deg);
+        }
+      }
+
+      @keyframes right {
+        from {
+          transform: perspective(1200px) rotateY(0deg) rotateX(-90deg);
+          -ms-transform: perspective(1200px) rotateY(0deg) rotateX(-90deg);
+          -webkit-transform: perspective(1200px) rotateY(0deg) rotateX(-90deg);
+        }
+        to {
+          transform: perspective(1200px) rotateY(360deg) rotateX(-90deg);
+          -ms-transform: perspective(1200px) rotateY(360deg) rotateX(-90deg);
+          -webkit-transform: perspective(1200px) rotateY(360deg) rotateX(-90deg);
+        }
+      }
+
+      @keyframes left {
+        from {
+          transform: perspective(1200px) rotateY(0deg) rotateX(-90deg);
+          -ms-transform: perspective(1200px) rotateY(0deg) rotateX(-90deg);
+          -webkit-transform: perspective(1200px) rotateY(0deg) rotateX(-90deg);
+        }
+        to {
+          transform: perspective(1200px) rotateY(360deg) rotateX(-90deg);
+          -ms-transform: perspective(1200px) rotateY(360deg) rotateX(-90deg);
+          -webkit-transform: perspective(1200px) rotateY(360deg) rotateX(-90deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="scene">
+      <div class="cube">
+        <!-- 最上方板子 -->
+        <div class="side left">
+          <div class="guides"></div>
+          <span>left</span>
+        </div>
+        <!-- 中间的板子 -->
+        <div class="side back">
+          <div class="guides"></div>
+          <span>BACK</span>
+        </div>
+        <div class="side top">
+          <div class="guides"></div>
+          <span>TOP</span>
+        </div>
+        <div class="side bottom">
+          <div class="guides"></div>
+          <span>BOTTOM</span>
+        </div>
+        <div class="side front">
+          <div class="guides"></div>
+          <span>FRONT</span>
+        </div>
+        <!-- 下方的板子 -->
+        <div class="side right">
+          <div class="guides"></div>
+          <span>right</span>
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
